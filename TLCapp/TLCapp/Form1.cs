@@ -35,10 +35,6 @@ namespace TLCapp
         string a = "a1280608";
         string p = "Jb321321";
 
-        
-
-
-
 
         /// <summary>
         /// login button click
@@ -63,9 +59,6 @@ namespace TLCapp
                     i.InnerText = p;
                 }
             }
-
-
-
         }
 
 
@@ -92,6 +85,11 @@ namespace TLCapp
             return false;
         }
 
+        /// <summary>
+        /// clicks the enter button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Enter_button_Click(object sender, EventArgs e)
         {
             var inputElements = webbMain.Document.GetElementsByTagName("button");
@@ -105,6 +103,67 @@ namespace TLCapp
             }
 
         }
+
+
+
+
+        private void shifts_button_Click(object sender, EventArgs e)
+        {
+
+            var dataElements = webbMain.Document.GetElementsByTagName("td");
+            foreach(HtmlElement i in dataElements)
+            {
+                //Console.WriteLine(i.TagName);
+
+                Console.WriteLine(i.GetAttribute("span"));
+
+
+
+                if (i.GetAttribute("class").Equals("calendarCellRegularFuture"))
+                {
+                    Console.WriteLine("herrrreeeeee");
+                }
+            }
+
+
+
+        }
+
+
+
+
+
+
+
+       
+
+
+
+
+         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -127,3 +186,12 @@ namespace TLCapp
 
     }
 }
+
+
+
+
+
+
+
+
+
