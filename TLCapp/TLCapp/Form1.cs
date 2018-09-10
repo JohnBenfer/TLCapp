@@ -106,23 +106,40 @@ namespace TLCapp
 
 
 
-
+        int day;
+        string time;
         private void shifts_button_Click(object sender, EventArgs e)
         {
 
-            var dataElements = webbMain.Document.GetElementsByTagName("td");
-            foreach(HtmlElement i in dataElements)
+            var spanElements = webbMain.Document.All;
+            foreach(HtmlElement i in spanElements)
             {
                 //Console.WriteLine(i.TagName);
 
-                Console.WriteLine(i.GetAttribute("span"));
+                //Console.WriteLine(i.GetAttribute("className"));
+                //Console.Write(" " + i.GetAttribute("data"));
+                //Console.WriteLine(i.TagName);
+                
 
 
 
-                if (i.GetAttribute("class").Equals("calendarCellRegularFuture"))
+                if (i.GetAttribute("className").Equals("calendarDateCurrent"))
                 {
-                    Console.WriteLine("herrrreeeeee");
+                    Console.WriteLine("Current day " + i.InnerText);
+
                 }
+
+                if (i.GetAttribute("className").Equals("calendarDateNormal"))
+                {
+                    Console.WriteLine(i.InnerText);
+                }
+
+                if (i.GetAttribute("className").Equals("calendarTextShiftName"))
+                {
+                    Console.WriteLine(i.InnerText);
+                }
+
+
             }
 
 
