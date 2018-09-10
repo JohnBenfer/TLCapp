@@ -65,6 +65,7 @@ namespace TLCapp
             }
 
 
+
         }
 
 
@@ -91,7 +92,19 @@ namespace TLCapp
             return false;
         }
 
+        private void Enter_button_Click(object sender, EventArgs e)
+        {
+            var inputElements = webbMain.Document.GetElementsByTagName("button");
+            foreach (HtmlElement i in inputElements)
+            {
+                Console.WriteLine(i.TagName);
 
+                Console.WriteLine("hereeee");
+                i.InvokeMember("Click");
+                
+            }
+
+        }
 
 
 
@@ -110,7 +123,6 @@ namespace TLCapp
         {
 
         }
-
 
 
     }

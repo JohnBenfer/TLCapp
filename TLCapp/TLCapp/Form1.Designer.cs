@@ -36,6 +36,7 @@
             this.webbMain = new System.Windows.Forms.WebBrowser();
             this.Refresh_button = new System.Windows.Forms.Button();
             this.Load_button = new System.Windows.Forms.Button();
+            this.Enter_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -110,11 +111,22 @@
             this.Load_button.UseVisualStyleBackColor = true;
             this.Load_button.Click += new System.EventHandler(this.Load_button_Click);
             // 
+            // Enter_button
+            // 
+            this.Enter_button.Location = new System.Drawing.Point(447, 138);
+            this.Enter_button.Name = "Enter_button";
+            this.Enter_button.Size = new System.Drawing.Size(90, 57);
+            this.Enter_button.TabIndex = 8;
+            this.Enter_button.Text = "Enter";
+            this.Enter_button.UseVisualStyleBackColor = true;
+            this.Enter_button.Click += new System.EventHandler(this.Enter_button_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 753);
+            this.Controls.Add(this.Enter_button);
             this.Controls.Add(this.Load_button);
             this.Controls.Add(this.Refresh_button);
             this.Controls.Add(this.webbMain);
@@ -140,6 +152,7 @@
         private System.Windows.Forms.WebBrowser webbMain;
         private System.Windows.Forms.Button Refresh_button;
         private System.Windows.Forms.Button Load_button;
+        private System.Windows.Forms.Button Enter_button;
     }
 }
 
