@@ -11,6 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HtmlAgilityPack;
+using System.Net;
 
 // input tag for username
 // <input type="text" autocomplete="off" placeholder="User ID" class="inforTextbox" name="login" id="loginField">
@@ -70,7 +72,8 @@ namespace TLCapp
         /// <param name="e"></param>
         private void Load_button_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(load(TLC));
+            load(TLC);
+            
         }
 
         /// <summary>
@@ -78,11 +81,11 @@ namespace TLCapp
         /// </summary>
         /// <param name="URL"></param>
         /// <returns></returns>
-        private bool load(string URL)
+        private void load(string URL)
         {
             webbMain.Navigate(URL);
-            Console.WriteLine(webbMain.ReadyState.ToString());
-            return false;
+            //Console.WriteLine(webbMain.ReadyState.ToString());
+            
         }
 
         /// <summary>
@@ -95,9 +98,6 @@ namespace TLCapp
             var inputElements = webbMain.Document.GetElementsByTagName("button");
             foreach (HtmlElement i in inputElements)
             {
-                Console.WriteLine(i.TagName);
-
-                Console.WriteLine("hereeee");
                 i.InvokeMember("Click");
                 
             }
@@ -105,45 +105,79 @@ namespace TLCapp
         }
 
 
+        Dictionary<int, string> shifts = new Dictionary<int, string>();
+        Stack<int> days = new Stack<int>();
 
         int day;
         string time;
         private void shifts_button_Click(object sender, EventArgs e)
         {
 
+            
+
             var spanElements = webbMain.Document.All;
             foreach(HtmlElement i in spanElements)
             {
-                //Console.WriteLine(i.TagName);
 
                 //Console.WriteLine(i.GetAttribute("className"));
                 //Console.Write(" " + i.GetAttribute("data"));
                 //Console.WriteLine(i.TagName);
-                
 
-
-
+                // gets current day
                 if (i.GetAttribute("className").Equals("calendarDateCurrent"))
                 {
-                    Console.WriteLine("Current day " + i.InnerText);
-
+                    //Console.WriteLine("Current day " + i.InnerText);
+                    days.Push(Convert.ToInt32(i.InnerText));
                 }
 
+                // gets day
                 if (i.GetAttribute("className").Equals("calendarDateNormal"))
                 {
-                    Console.WriteLine(i.InnerText);
+                    //Console.WriteLine(i.InnerText);
+                    days.Push(Convert.ToInt32(i.InnerText));
                 }
-
+                
+                // gets shift
                 if (i.GetAttribute("className").Equals("calendarTextShiftName"))
                 {
-                    Console.WriteLine(i.InnerText);
+                    //Console.WriteLine(i.InnerText);
+                    time = i.InnerText;
+                    
+                    shifts.Add(days.Pop(), time);
                 }
 
+            }// close foreach
 
+            
+
+            foreach(KeyValuePair<int, string> kvp in shifts)
+            {
+                Console.WriteLine(kvp.Key.ToString() + " " + kvp.Value.ToString());
+                //Console.WriteLine(" " + kvp.Value.ToString());
             }
 
+        }
 
 
+        private void hop()
+        {
+            
+            WebClient webClient = new WebClient();
+            string page = webClient.DownloadString(webbMain.Url);
+
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(page);
+            //Console.WriteLine(page);
+
+            List<List<string>> table = doc.DocumentNode.SelectSingleNode("//table[@class='mydata']")
+                        .Descendants("tr")
+                        .Skip(1)
+                        .Where(tr => tr.Elements("td").Count() > 1)
+                        .Select(tr => tr.Elements("td").Select(td => td.InnerText.Trim()).ToList())
+                        .ToList();
+
+
+            Console.WriteLine(table[0][0].ToString());
         }
 
 
@@ -191,7 +225,7 @@ namespace TLCapp
 
         private void Refresh_button_Click(object sender, EventArgs e)
         {
-            
+            hop();
         }
 
 
