@@ -22,13 +22,14 @@ using System.Net;
 
 namespace TLCapp
 {
-    public partial class Form1 : Form
+    public partial class TLC_form : Form
     {
-        public Form1()
+        public TLC_form()
         {
             InitializeComponent();
         }
 
+        
         string URL = "https://mytlc.bestbuy.com/";
         string TLC = "https://mytlc.bestbuy.com/etm/login.jsp";
         string Twitter = "https://twitter.com/login";
@@ -152,7 +153,7 @@ namespace TLCapp
 
             foreach(KeyValuePair<int, string> kvp in shifts)
             {
-                Console.WriteLine(kvp.Key.ToString() + " " + kvp.Value.ToString());
+                Console.WriteLine(kvp.Key + " " + kvp.Value.ToString());
                 //Console.WriteLine(" " + kvp.Value.ToString());
             }
 
@@ -181,17 +182,167 @@ namespace TLCapp
         }
 
 
+        string month;
+
+        private void X_button_Click(object sender, EventArgs e)
+        {
+            // goes to website and waits until loaded
+            webbMain.Navigate(TLC);
+            int c = 0;
+            while (webbMain.ReadyState != WebBrowserReadyState.Complete)
+            {
+                Application.DoEvents();
+                Console.WriteLine(c++);
+            }
+
+
+            // Logs user in
+            var inputElements = webbMain.Document.GetElementsByTagName("input");
+            foreach (HtmlElement i in inputElements)
+            {
+                if (i.GetAttribute("name").Equals("login"))
+                {
+                    i.InnerText = a;
+                }
+                if (i.GetAttribute("name").Equals("password"))
+                {
+                    i.Focus();
+                    i.InnerText = p;
+                }
+            } // closes foreach
+
+            var buttonElements = webbMain.Document.GetElementsByTagName("button");
+            foreach (HtmlElement i in buttonElements)
+            {
+                if (i.GetAttribute("id").Equals("loginButton"))
+                {
+                    i.InvokeMember("Click");
+
+                }
+            }
+
+            // waits to finish loading again
+                        while(webbMain.IsBusy == false)
+            {
+                Application.DoEvents();
+            }
+            while (webbMain.IsBusy == true)
+            {
+                Application.DoEvents();
+                
+            }
+
+            // gets shifts and stores them
+            var spanElements = webbMain.Document.All;
+            foreach (HtmlElement i in spanElements)
+            {
+                // gets current day
+                if (i.GetAttribute("className").Equals("calendarDateCurrent"))
+                {
+                    days.Push(Convert.ToInt32(i.InnerText));
+                }
+
+                // gets day
+                if (i.GetAttribute("className").Equals("calendarDateNormal"))
+                {
+                    days.Push(Convert.ToInt32(i.InnerText));
+                }
+
+                // gets shift
+                if (i.GetAttribute("className").Equals("calendarTextShiftName"))
+                {
+                    time = i.InnerText;
+                    shifts.Add(days.Pop(), time);
+                }
+
+                // gets current month
+                if (i.GetAttribute("className").Equals("pageTitle"))
+                {
+                    month = i.InnerText;
+                }
+
+            }// close foreach
+
+            // print shifts
+            Console.WriteLine("Best Buy Shifts: \n");
+            foreach (KeyValuePair<int, string> kvp in shifts)
+            {
+                Console.WriteLine(kvp.Key + " " + kvp.Value.ToString());
+            }
+            int m = getMonth(month);
+            Console.WriteLine("\n" + m);
+            Console.WriteLine("\n" + shifts.Count + " shifts");
+
+            Output.Text += "Best Buy Shifts: \n";
+
+            foreach (KeyValuePair<int, string> kvp in shifts)
+            {
+                Output.Text += ("\n\t\n" + m + "\n/" + kvp.Key + " \n" + kvp.Value.ToString() + "\n");
+            }
+
+
+        } // closes X button click
 
 
 
 
+        /// <summary>
+        /// converts the month into a usable month
+        /// </summary>
+        /// <param name="month">month text from website</param>
+        /// <returns>int month</returns>
+        private int getMonth(string month)
+        {
+            StringBuilder sb = new StringBuilder();
+            char car;
+            for(int i = 0; i < month.Length; i++)
+            {
+                car = month[i];
+                if((car > 'a' && car < 'z') || (car > 'A' && car < 'Z'))
+                {
+                    sb.Append(month[i]);
+                } else
+                {
+                    i = month.Length;
+                }
+            }
 
-       
+            string word = sb.ToString().ToUpper();
+            
+            switch (word)
+            {
+                case "JANUARY":
+                    return 1;
+                case "FEBUARY":
+                    return 2;
+                case "MARCH":
+                    return 3;
+                case "APRIL":
+                    return 4;
+                case "MAY":
+                    return 5;
+                case "JUNE":
+                    return 6;
+                case "JULY":
+                    return 7;
+                case "AUGUST":
+                    return 8;
+                case "SEPTEMBER":
+                    return 9;
+                case "OCTOBER":
+                    return 10;
+                case "NOVEMBER":
+                    return 11;
+                case "DECEMBER":
+                    return 12;
+
+                default:
+                    return -1;
+            }
+        } // closes getMonth method
 
 
 
-
-         
 
 
 

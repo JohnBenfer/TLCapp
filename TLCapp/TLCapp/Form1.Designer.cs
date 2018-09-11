@@ -1,6 +1,6 @@
 ﻿namespace TLCapp
 {
-    partial class Form1
+    partial class TLC_form
     {
         /// <summary>
         /// Required designer variable.
@@ -38,6 +38,8 @@
             this.Load_button = new System.Windows.Forms.Button();
             this.Enter_button = new System.Windows.Forms.Button();
             this.shifts_button = new System.Windows.Forms.Button();
+            this.X_button = new System.Windows.Forms.Button();
+            this.Output = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -85,10 +87,10 @@
             // webbMain
             // 
             this.webbMain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webbMain.Location = new System.Drawing.Point(0, 241);
+            this.webbMain.Location = new System.Drawing.Point(0, 364);
             this.webbMain.MinimumSize = new System.Drawing.Size(20, 20);
             this.webbMain.Name = "webbMain";
-            this.webbMain.Size = new System.Drawing.Size(897, 512);
+            this.webbMain.Size = new System.Drawing.Size(897, 389);
             this.webbMain.TabIndex = 5;
             this.webbMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
@@ -132,11 +134,34 @@
             this.shifts_button.UseVisualStyleBackColor = true;
             this.shifts_button.Click += new System.EventHandler(this.shifts_button_Click);
             // 
-            // Form1
+            // X_button
             // 
+            this.X_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.X_button.Location = new System.Drawing.Point(553, 33);
+            this.X_button.Name = "X_button";
+            this.X_button.Size = new System.Drawing.Size(116, 162);
+            this.X_button.TabIndex = 10;
+            this.X_button.Text = "X";
+            this.X_button.UseVisualStyleBackColor = true;
+            this.X_button.Click += new System.EventHandler(this.X_button_Click);
+            // 
+            // Output
+            // 
+            this.Output.Location = new System.Drawing.Point(46, 221);
+            this.Output.Multiline = true;
+            this.Output.Name = "Output";
+            this.Output.ReadOnly = true;
+            this.Output.Size = new System.Drawing.Size(623, 137);
+            this.Output.TabIndex = 11;
+            // 
+            // TLC_form
+            // 
+            this.AcceptButton = this.X_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 753);
+            this.Controls.Add(this.Output);
+            this.Controls.Add(this.X_button);
             this.Controls.Add(this.shifts_button);
             this.Controls.Add(this.Enter_button);
             this.Controls.Add(this.Load_button);
@@ -147,8 +172,10 @@
             this.Controls.Add(this.text_password);
             this.Controls.Add(this.text_id);
             this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Location = new System.Drawing.Point(10, 20);
+            this.Name = "TLC_form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "TLC App";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +193,8 @@
         private System.Windows.Forms.Button Load_button;
         private System.Windows.Forms.Button Enter_button;
         private System.Windows.Forms.Button shifts_button;
+        private System.Windows.Forms.Button X_button;
+        private System.Windows.Forms.TextBox Output;
     }
 }
 
