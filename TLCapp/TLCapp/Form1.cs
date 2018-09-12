@@ -223,6 +223,7 @@ namespace TLCapp
             await Task.Delay(200);
             // Logs user in
             var inputElements = webbMain.Document.GetElementsByTagName("input");
+            Console.WriteLine("\n" + inputElements.Count + "\n");
             foreach (HtmlElement i in inputElements)
             {
                 if (i.GetAttribute("name").Equals("login"))
@@ -256,9 +257,13 @@ namespace TLCapp
                 Application.DoEvents();
                 
             }
+
+
+
             await Task.Delay(200);
             // gets shifts and stores them
             var spanElements = webbMain.Document.All;
+            Console.WriteLine(spanElements.Count);
             foreach (HtmlElement i in spanElements)
             {
                 // gets current day
