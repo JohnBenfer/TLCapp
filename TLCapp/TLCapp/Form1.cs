@@ -111,6 +111,11 @@ namespace TLCapp
 
         int day;
         string time;
+        /// <summary>
+        /// gets shifts when shifts button clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void shifts_button_Click(object sender, EventArgs e)
         {
 
@@ -184,7 +189,7 @@ namespace TLCapp
 
         string month;
 
-        private void X_button_Click(object sender, EventArgs e)
+        private async void X_button_Click(object sender, EventArgs e)
         {
             // goes to website and waits until loaded
             webbMain.Navigate(TLC);
@@ -192,16 +197,30 @@ namespace TLCapp
             while (webbMain.IsBusy == false)
             {
                 Application.DoEvents();
-                Console.WriteLine(c++);
+                if (c % 4 == 0)
+                {
+                    Console.WriteLine(c++);
+                }else
+                {
+                    c++;
+                }
             }
 
             while (webbMain.IsBusy == true)
             {
                 Application.DoEvents();
-                Console.WriteLine(c--);
+                if(c%4 == 0)
+                {
+                    Console.WriteLine(c--);
+                }
+                else
+                {
+                    c--;
+                }
+
             }
 
-
+            await Task.Delay(200);
             // Logs user in
             var inputElements = webbMain.Document.GetElementsByTagName("input");
             foreach (HtmlElement i in inputElements)
@@ -299,6 +318,11 @@ namespace TLCapp
         /// <returns>int month</returns>
         private int getMonth(string month)
         {
+            if(month == null)
+            {
+                Console.WriteLine("Month was not found");
+                return -1;
+            }
             StringBuilder sb = new StringBuilder();
             char car;
             for(int i = 0; i < month.Length; i++)
