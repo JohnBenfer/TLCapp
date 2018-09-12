@@ -256,7 +256,7 @@ namespace TLCapp
                 Application.DoEvents();
                 
             }
-
+            await Task.Delay(200);
             // gets shifts and stores them
             var spanElements = webbMain.Document.All;
             foreach (HtmlElement i in spanElements)
