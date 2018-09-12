@@ -259,8 +259,9 @@ namespace TLCapp
             }
 
 
-
+            // extra delay to ensure webpage loaded
             await Task.Delay(200);
+
             // gets shifts and stores them
             var spanElements = webbMain.Document.All;
             Console.WriteLine(spanElements.Count);
@@ -308,6 +309,7 @@ namespace TLCapp
             foreach (KeyValuePair<int, string> kvp in shifts)
             {
                 Output.Text += ("\n\t\n" + m + "\n/" + kvp.Key + " \n" + kvp.Value.ToString() + "\n");
+                //Output.AppendText ("John" + "Alex\n");
             }
 
 
