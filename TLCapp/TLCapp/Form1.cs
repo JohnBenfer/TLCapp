@@ -189,10 +189,16 @@ namespace TLCapp
             // goes to website and waits until loaded
             webbMain.Navigate(TLC);
             int c = 0;
-            while (webbMain.ReadyState != WebBrowserReadyState.Complete)
+            while (webbMain.IsBusy == false)
             {
                 Application.DoEvents();
                 Console.WriteLine(c++);
+            }
+
+            while (webbMain.IsBusy == true)
+            {
+                Application.DoEvents();
+                Console.WriteLine(c--);
             }
 
 
