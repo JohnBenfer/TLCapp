@@ -28,29 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.text_id = new System.Windows.Forms.TextBox();
             this.text_password = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.webbMain = new System.Windows.Forms.WebBrowser();
-            this.Refresh_button = new System.Windows.Forms.Button();
             this.Load_button = new System.Windows.Forms.Button();
             this.Enter_button = new System.Windows.Forms.Button();
             this.shifts_button = new System.Windows.Forms.Button();
             this.X_button = new System.Windows.Forms.Button();
             this.Output = new System.Windows.Forms.TextBox();
+            this.debug_text = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(144, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 57);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Login";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // text_id
             // 
@@ -94,16 +83,6 @@
             this.webbMain.TabIndex = 5;
             this.webbMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
-            // Refresh_button
-            // 
-            this.Refresh_button.Location = new System.Drawing.Point(340, 138);
-            this.Refresh_button.Name = "Refresh_button";
-            this.Refresh_button.Size = new System.Drawing.Size(82, 57);
-            this.Refresh_button.TabIndex = 6;
-            this.Refresh_button.Text = "Refresh";
-            this.Refresh_button.UseVisualStyleBackColor = true;
-            this.Refresh_button.Click += new System.EventHandler(this.Refresh_button_Click);
-            // 
             // Load_button
             // 
             this.Load_button.Location = new System.Drawing.Point(46, 138);
@@ -116,7 +95,7 @@
             // 
             // Enter_button
             // 
-            this.Enter_button.Location = new System.Drawing.Point(447, 138);
+            this.Enter_button.Location = new System.Drawing.Point(136, 138);
             this.Enter_button.Name = "Enter_button";
             this.Enter_button.Size = new System.Drawing.Size(90, 57);
             this.Enter_button.TabIndex = 8;
@@ -126,9 +105,9 @@
             // 
             // shifts_button
             // 
-            this.shifts_button.Location = new System.Drawing.Point(447, 35);
+            this.shifts_button.Location = new System.Drawing.Point(232, 138);
             this.shifts_button.Name = "shifts_button";
-            this.shifts_button.Size = new System.Drawing.Size(90, 73);
+            this.shifts_button.Size = new System.Drawing.Size(90, 57);
             this.shifts_button.TabIndex = 9;
             this.shifts_button.Text = "Get Shifts";
             this.shifts_button.UseVisualStyleBackColor = true;
@@ -137,7 +116,7 @@
             // X_button
             // 
             this.X_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.X_button.Location = new System.Drawing.Point(553, 33);
+            this.X_button.Location = new System.Drawing.Point(428, 33);
             this.X_button.Name = "X_button";
             this.X_button.Size = new System.Drawing.Size(116, 162);
             this.X_button.TabIndex = 10;
@@ -155,24 +134,34 @@
             this.Output.Size = new System.Drawing.Size(897, 192);
             this.Output.TabIndex = 11;
             // 
+            // debug_text
+            // 
+            this.debug_text.Dock = System.Windows.Forms.DockStyle.Right;
+            this.debug_text.Location = new System.Drawing.Point(550, 0);
+            this.debug_text.Multiline = true;
+            this.debug_text.Name = "debug_text";
+            this.debug_text.ReadOnly = true;
+            this.debug_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.debug_text.Size = new System.Drawing.Size(347, 201);
+            this.debug_text.TabIndex = 12;
+            // 
             // TLC_form
             // 
             this.AcceptButton = this.X_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 753);
+            this.Controls.Add(this.debug_text);
             this.Controls.Add(this.Output);
             this.Controls.Add(this.X_button);
             this.Controls.Add(this.shifts_button);
             this.Controls.Add(this.Enter_button);
             this.Controls.Add(this.Load_button);
-            this.Controls.Add(this.Refresh_button);
             this.Controls.Add(this.webbMain);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.text_password);
             this.Controls.Add(this.text_id);
-            this.Controls.Add(this.button1);
             this.Location = new System.Drawing.Point(10, 20);
             this.Name = "TLC_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -183,19 +172,17 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox text_id;
         private System.Windows.Forms.TextBox text_password;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.WebBrowser webbMain;
-        private System.Windows.Forms.Button Refresh_button;
         private System.Windows.Forms.Button Load_button;
         private System.Windows.Forms.Button Enter_button;
         private System.Windows.Forms.Button shifts_button;
         private System.Windows.Forms.Button X_button;
         private System.Windows.Forms.TextBox Output;
+        private System.Windows.Forms.TextBox debug_text;
     }
 }
 

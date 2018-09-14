@@ -191,19 +191,15 @@ namespace TLCapp
 
         private async void X_button_Click(object sender, EventArgs e)
         {
+            debug_text.AppendText("Getting work shifts...\n");
+
             // goes to website and waits until loaded
             webbMain.Navigate(TLC);
             int c = 0;
             while (webbMain.IsBusy == false)
             {
                 Application.DoEvents();
-                if (c % 4 == 0)
-                {
-                    Console.WriteLine(c++);
-                }else
-                {
-                    c++;
-                }
+                debug_text.AppendText("waiting " + c++.ToString() + "\n");
             }
 
             while (webbMain.IsBusy == true)
@@ -219,7 +215,7 @@ namespace TLCapp
                 }
 
             }
-
+            debug_text.AppendText("delay...\n");
             await Task.Delay(100);
             // Logs user in
             var inputElements = webbMain.Document.GetElementsByTagName("input");
@@ -243,23 +239,26 @@ namespace TLCapp
                 if (i.GetAttribute("id").Equals("loginButton"))
                 {
                     i.InvokeMember("Click");
-
+                    debug_text.AppendText("Button Click..\n");
                 }
             }
 
             // waits to finish loading again
-                        while(webbMain.IsBusy == false)
+            while(webbMain.IsBusy == false)
             {
                 Application.DoEvents();
+                debug_text.AppendText("page is not busy..\n");
             }
             while (webbMain.IsBusy == true)
             {
                 Application.DoEvents();
-                
+                debug_text.AppendText("page is busy..\n");
+
             }
 
 
             // extra delay to ensure webpage loaded
+            debug_text.AppendText("delay..\n");
             await Task.Delay(100);
 
             // gets shifts and stores them
@@ -267,6 +266,7 @@ namespace TLCapp
             Console.WriteLine(spanElements.Count);
             foreach (HtmlElement i in spanElements)
             {
+                
                 // gets current day
                 if (i.GetAttribute("className").Equals("calendarDateCurrent"))
                 {
@@ -294,27 +294,11 @@ namespace TLCapp
 
             }// close foreach
 
-            // print shifts
-            Console.WriteLine("Best Buy Shifts: \n");
+            debug_text.AppendText("Shifts Loaded\n");
+
             string temp;
-            foreach (KeyValuePair<int, string> kvp in shifts)
-            {
-                temp = kvp.Value.ToString();
 
-
-                temp = temp.Replace("\n", string.Empty);
-                temp = temp.Replace("\r", string.Empty);
-                if (temp.Contains("\r") || temp.Contains("\n"))
-                {
-                    Console.WriteLine("wow");
-                }
-                Console.WriteLine(kvp.Key + " " + temp);
-                
-            }
             int m = getMonth(month);
-            Console.WriteLine("\n" + m);
-            Console.WriteLine("\n" + shifts.Count + " shifts");
-
             Output.Text += "Best Buy Shifts: \n";
 
             foreach (KeyValuePair<int, string> kvp in shifts)
@@ -323,8 +307,18 @@ namespace TLCapp
                 temp = temp.Replace("\n", string.Empty);
                 temp = temp.Replace("\r", string.Empty);
                 Output.AppendText(m + "/" + kvp.Key + " \t" + temp + "\n");
+                
             }
-
+            if(shifts.Count != 0 )
+            {
+                if(Output.Text.Length > 10)
+                {
+                    debug_text.AppendText("Printed shifts");
+                }
+            } else
+            {
+                debug_text.AppendText("No shifts\n");
+            }
 
 
         } // closes X button click
