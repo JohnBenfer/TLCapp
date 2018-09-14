@@ -87,10 +87,10 @@
             // webbMain
             // 
             this.webbMain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webbMain.Location = new System.Drawing.Point(0, 364);
+            this.webbMain.Location = new System.Drawing.Point(0, 393);
             this.webbMain.MinimumSize = new System.Drawing.Size(20, 20);
             this.webbMain.Name = "webbMain";
-            this.webbMain.Size = new System.Drawing.Size(897, 389);
+            this.webbMain.Size = new System.Drawing.Size(897, 360);
             this.webbMain.TabIndex = 5;
             this.webbMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
@@ -147,11 +147,12 @@
             // 
             // Output
             // 
-            this.Output.Location = new System.Drawing.Point(46, 221);
+            this.Output.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Output.Location = new System.Drawing.Point(0, 201);
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
-            this.Output.Size = new System.Drawing.Size(623, 137);
+            this.Output.Size = new System.Drawing.Size(897, 192);
             this.Output.TabIndex = 11;
             // 
             // TLC_form

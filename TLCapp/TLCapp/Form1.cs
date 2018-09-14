@@ -220,7 +220,7 @@ namespace TLCapp
 
             }
 
-            await Task.Delay(200);
+            await Task.Delay(100);
             // Logs user in
             var inputElements = webbMain.Document.GetElementsByTagName("input");
             Console.WriteLine("\n" + inputElements.Count + "\n");
@@ -260,7 +260,7 @@ namespace TLCapp
 
 
             // extra delay to ensure webpage loaded
-            await Task.Delay(200);
+            await Task.Delay(100);
 
             // gets shifts and stores them
             var spanElements = webbMain.Document.All;
@@ -296,9 +296,20 @@ namespace TLCapp
 
             // print shifts
             Console.WriteLine("Best Buy Shifts: \n");
+            string temp;
             foreach (KeyValuePair<int, string> kvp in shifts)
             {
-                Console.WriteLine(kvp.Key + " " + kvp.Value.ToString());
+                temp = kvp.Value.ToString();
+
+
+                temp = temp.Replace("\n", string.Empty);
+                temp = temp.Replace("\r", string.Empty);
+                if (temp.Contains("\r") || temp.Contains("\n"))
+                {
+                    Console.WriteLine("wow");
+                }
+                Console.WriteLine(kvp.Key + " " + temp);
+                
             }
             int m = getMonth(month);
             Console.WriteLine("\n" + m);
@@ -308,9 +319,12 @@ namespace TLCapp
 
             foreach (KeyValuePair<int, string> kvp in shifts)
             {
-                Output.Text += ("\n\t\n" + m + "\n/" + kvp.Key + " \n" + kvp.Value.ToString() + "\n");
-                //Output.AppendText ("John" + "Alex\n");
+                temp = kvp.Value.ToString();
+                temp = temp.Replace("\n", string.Empty);
+                temp = temp.Replace("\r", string.Empty);
+                Output.AppendText(m + "/" + kvp.Key + " \t" + temp + "\n");
             }
+
 
 
         } // closes X button click
