@@ -296,17 +296,16 @@ namespace TLCapp
 
             debug_text.AppendText("Shifts Loaded\n");
 
-            string temp;
+            Dictionary<int, KeyValuePair<int, int>> all = getTimes(shifts);
+
 
             int m = getMonth(month);
             Output.Text += "Best Buy Shifts: \n";
 
-            foreach (KeyValuePair<int, string> kvp in shifts)
+            foreach (KeyValuePair<int, KeyValuePair<int, int>> kvp in all)
             {
-                temp = kvp.Value.ToString();
-                temp = temp.Replace("\n", string.Empty);
-                temp = temp.Replace("\r", string.Empty);
-                Output.AppendText(m + "/" + kvp.Key + " \t" + temp + "\n");
+
+                Output.AppendText(m + "/" + kvp.Key + " \t" + kvp.Value.Key + " - " + kvp.Value.Value + "\n");
                 
             }
             if(shifts.Count != 0 )
@@ -320,9 +319,45 @@ namespace TLCapp
                 debug_text.AppendText("No shifts\n");
             }
 
-
         } // closes X button click
 
+
+        private Dictionary<int, KeyValuePair<int, int>> getTimes(Dictionary<int, string> shifts)
+        {
+            string temp;
+            string[] array;
+            int one;
+            int two;
+            Dictionary<int, KeyValuePair<int, int>> times = new Dictionary<int, KeyValuePair<int, int>>();
+            foreach (KeyValuePair<int, string> kvp in shifts)
+            {
+                temp = kvp.Value;
+                temp = temp.Replace("\n", string.Empty);
+                temp = temp.Replace("\r", string.Empty);
+                array = temp.Split('-');
+                array[0] = array[0].Replace(":", string.Empty);
+                array[1] = array[1].Replace(":", string.Empty);
+
+                one = Convert.ToInt32(array[0]);
+                debug_text.AppendText(one.ToString() + "\n");
+                two = Convert.ToInt32(array[1]);
+                debug_text.AppendText(two.ToString() + "\n");
+
+                if(one > 1259)
+                {
+                    one -= 1200;
+                }
+
+                if(two > 1259)
+                {
+                    two -= 1200;
+                }
+                debug_text.AppendText(one.ToString() + "\n");
+                debug_text.AppendText(two.ToString() + "\n");
+                times.Add(kvp.Key, new KeyValuePair<int, int>(one, two));
+            }
+            return times;
+        }
 
 
 
