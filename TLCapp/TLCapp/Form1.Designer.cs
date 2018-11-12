@@ -156,7 +156,7 @@
             this.scrapeButton.TabIndex = 13;
             this.scrapeButton.Text = "Scrape";
             this.scrapeButton.UseVisualStyleBackColor = false;
-            this.scrapeButton.Click += new System.EventHandler(this.scrapeButton_Click);
+            this.scrapeButton.Click += new System.EventHandler(this.ScrapeButton_Click);
             // 
             // TLC_form
             // 

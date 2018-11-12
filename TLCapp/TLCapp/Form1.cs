@@ -69,7 +69,7 @@ namespace TLCapp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void scrapeButton_Click(object sender, EventArgs e)
+        private async void ScrapeButton_Click(object sender, EventArgs e)
         {
             load("https://www.bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001");
             int c = 0;
