@@ -39,6 +39,7 @@
             this.X_button = new System.Windows.Forms.Button();
             this.Output = new System.Windows.Forms.TextBox();
             this.debug_text = new System.Windows.Forms.TextBox();
+            this.scrapeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // text_id
@@ -115,13 +116,14 @@
             // 
             // X_button
             // 
+            this.X_button.BackColor = System.Drawing.Color.Red;
             this.X_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.X_button.Location = new System.Drawing.Point(428, 33);
             this.X_button.Name = "X_button";
             this.X_button.Size = new System.Drawing.Size(116, 162);
             this.X_button.TabIndex = 10;
             this.X_button.Text = "X";
-            this.X_button.UseVisualStyleBackColor = true;
+            this.X_button.UseVisualStyleBackColor = false;
             this.X_button.Click += new System.EventHandler(this.X_button_Click);
             // 
             // Output
@@ -145,12 +147,24 @@
             this.debug_text.Size = new System.Drawing.Size(347, 201);
             this.debug_text.TabIndex = 12;
             // 
+            // scrapeButton
+            // 
+            this.scrapeButton.BackColor = System.Drawing.Color.Lime;
+            this.scrapeButton.Location = new System.Drawing.Point(329, 138);
+            this.scrapeButton.Name = "scrapeButton";
+            this.scrapeButton.Size = new System.Drawing.Size(93, 57);
+            this.scrapeButton.TabIndex = 13;
+            this.scrapeButton.Text = "Scrape";
+            this.scrapeButton.UseVisualStyleBackColor = false;
+            this.scrapeButton.Click += new System.EventHandler(this.scrapeButton_Click);
+            // 
             // TLC_form
             // 
             this.AcceptButton = this.X_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 753);
+            this.Controls.Add(this.scrapeButton);
             this.Controls.Add(this.debug_text);
             this.Controls.Add(this.Output);
             this.Controls.Add(this.X_button);
@@ -183,6 +197,7 @@
         private System.Windows.Forms.Button X_button;
         private System.Windows.Forms.TextBox Output;
         private System.Windows.Forms.TextBox debug_text;
+        private System.Windows.Forms.Button scrapeButton;
     }
 }
 

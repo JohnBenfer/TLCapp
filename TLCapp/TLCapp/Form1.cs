@@ -64,6 +64,57 @@ namespace TLCapp
             }
         }
 
+        /// <summary>
+        /// gets information regarding products from bestbuy.com
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void scrapeButton_Click(object sender, EventArgs e)
+        {
+            load("https://www.bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001");
+            int c = 0;
+            while (webbMain.IsBusy == false)
+            {
+                Application.DoEvents();
+                debug_text.AppendText("waiting " + c++.ToString() + "\n");
+            }
+
+            while (webbMain.IsBusy == true)
+            {
+                Application.DoEvents();
+                if (c % 4 == 0)
+                {
+                    Console.WriteLine(c--);
+                }
+                else
+                {
+                    c--;
+                }
+
+            }
+            debug_text.AppendText("delay...\n");
+            await Task.Delay(100);
+
+            Dictionary<int, string> itemLine = new Dictionary<int, string>();
+
+            var elements = webbMain.Document.All;
+            Console.WriteLine("Count = " + elements.Count);
+            foreach (HtmlElement i in elements)
+            {
+                if(i.GetAttribute("className") == "sku-value")
+                {
+                    Console.WriteLine(i.InnerText);
+                }
+                if (i.GetAttribute("className") == "sku-title" && !(i.InnerText.Equals("Model:")) && !(i.InnerText.Equals("SKU:")))
+                {
+                   
+                    Console.WriteLine(i.InnerText + "\n");
+                }
+
+            }
+
+
+        }
 
 
         /// <summary>
@@ -75,6 +126,7 @@ namespace TLCapp
         {
             load(TLC);
             
+
         }
 
         /// <summary>
@@ -420,23 +472,6 @@ namespace TLCapp
                     return -1;
             }
         } // closes getMonth method
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
