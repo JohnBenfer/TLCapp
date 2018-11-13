@@ -14,7 +14,6 @@ namespace TLCapp
     public class Scraper
     {
 
-        private System.Windows.Forms.WebBrowser webMain;
         private TLC_form f;
 
 
@@ -31,6 +30,45 @@ namespace TLCapp
             f.webbMain.Navigate(url);
 
 
+            await WebWait();
+
+            Dictionary<int, string> itemLine = new Dictionary<int, string>();
+            string titleBuf;
+            var elements = f.webbMain.Document.All;
+            Console.WriteLine("Count = " + elements.Count);
+            string className;
+            int count = 0;
+            foreach (HtmlElement i in elements)
+            {
+
+                className = i.GetAttribute("className");
+                if (className.Equals("sku-value"))
+                {
+                    count++;
+                    Console.WriteLine(i.InnerText);
+                }
+                if (i.GetAttribute("className") == "sku-title" && !(i.InnerText.Equals("Model:")) && !(i.InnerText.Equals("SKU:")))
+                {
+                    count++;
+                    titleBuf = i.InnerText;
+
+                    Console.WriteLine(titleBuf + "\n");
+                }
+
+            }
+
+
+
+
+
+        } // closes scrape method
+
+        /// <summary>
+        /// waits for a webpage to be loaded
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> WebWait()
+        {
             int c = 0;
             while (f.webbMain.IsBusy == false)
             {
@@ -53,29 +91,7 @@ namespace TLCapp
             }
             f.debug_text.AppendText("delay...\n");
             await Task.Delay(100);
-
-            Dictionary<int, string> itemLine = new Dictionary<int, string>();
-
-            var elements = f.webbMain.Document.All;
-            Console.WriteLine("Count = " + elements.Count);
-            foreach (HtmlElement i in elements)
-            {
-                if (i.GetAttribute("className") == "sku-value")
-                {
-                    Console.WriteLine(i.InnerText);
-                }
-                if (i.GetAttribute("className") == "sku-title" && !(i.InnerText.Equals("Model:")) && !(i.InnerText.Equals("SKU:")))
-                {
-
-                    Console.WriteLine(i.InnerText + "\n");
-                }
-
-            }
-
-
-
-
-
+            return true;
         }
 
 
