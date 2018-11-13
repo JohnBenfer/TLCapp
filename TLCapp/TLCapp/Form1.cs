@@ -27,12 +27,11 @@ namespace TLCapp
         public TLC_form()
         {
             InitializeComponent();
-            Scraper scraper = new Scraper(this);
-
+            scraper = new Scraper(this);
         }
 
 
-
+        Scraper scraper;
 
         string URL = "https://mytlc.bestbuy.com/";
         string TLC = "https://mytlc.bestbuy.com/etm/login.jsp";
@@ -76,46 +75,13 @@ namespace TLCapp
         /// <param name="e"></param>
         private async void ScrapeButton_Click(object sender, EventArgs e)
         {
-            load("https://www.bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001");
-            int c = 0;
-            while (webbMain.IsBusy == false)
+            string url = url_text.Text;
+            if (url.Equals(""))
             {
-                Application.DoEvents();
-                debug_text.AppendText("waiting " + c++.ToString() + "\n");
-            }
-
-            while (webbMain.IsBusy == true)
+                await scraper.Scrape("https://www.bestbuy.com/site/tvs/all-flat-screen-tvs/abcat0101001.c?id=abcat0101001");
+            } else
             {
-                Application.DoEvents();
-                if (c % 4 == 0)
-                {
-                    Console.WriteLine(c--);
-                }
-                else
-                {
-                    c--;
-                }
-
-            }
-            debug_text.AppendText("delay...\n");
-            await Task.Delay(100);
-
-            Dictionary<int, string> itemLine = new Dictionary<int, string>();
-
-            var elements = webbMain.Document.All;
-            Console.WriteLine("Count = " + elements.Count);
-            foreach (HtmlElement i in elements)
-            {
-                if(i.GetAttribute("className") == "sku-value")
-                {
-                    Console.WriteLine(i.InnerText);
-                }
-                if (i.GetAttribute("className") == "sku-title" && !(i.InnerText.Equals("Model:")) && !(i.InnerText.Equals("SKU:")))
-                {
-                   
-                    Console.WriteLine(i.InnerText + "\n");
-                }
-
+                await scraper.Scrape(url);
             }
 
 

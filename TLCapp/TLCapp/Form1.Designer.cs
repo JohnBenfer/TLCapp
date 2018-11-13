@@ -40,6 +40,8 @@
             this.Output = new System.Windows.Forms.TextBox();
             this.debug_text = new System.Windows.Forms.TextBox();
             this.scrapeButton = new System.Windows.Forms.Button();
+            this.url_text = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // text_id
@@ -79,11 +81,11 @@
             // webbMain
             // 
             this.webbMain.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.webbMain.Location = new System.Drawing.Point(0, 491);
+            this.webbMain.Location = new System.Drawing.Point(0, 598);
             this.webbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.webbMain.MinimumSize = new System.Drawing.Size(22, 25);
             this.webbMain.Name = "webbMain";
-            this.webbMain.Size = new System.Drawing.Size(1009, 450);
+            this.webbMain.Size = new System.Drawing.Size(1017, 450);
             this.webbMain.TabIndex = 5;
             this.webbMain.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
@@ -136,24 +138,24 @@
             // Output
             // 
             this.Output.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Output.Location = new System.Drawing.Point(0, 252);
+            this.Output.Location = new System.Drawing.Point(0, 359);
             this.Output.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
-            this.Output.Size = new System.Drawing.Size(1009, 239);
+            this.Output.Size = new System.Drawing.Size(1017, 239);
             this.Output.TabIndex = 11;
             // 
             // debug_text
             // 
             this.debug_text.Dock = System.Windows.Forms.DockStyle.Right;
-            this.debug_text.Location = new System.Drawing.Point(619, 0);
+            this.debug_text.Location = new System.Drawing.Point(627, 0);
             this.debug_text.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.debug_text.Multiline = true;
             this.debug_text.Name = "debug_text";
             this.debug_text.ReadOnly = true;
             this.debug_text.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.debug_text.Size = new System.Drawing.Size(390, 252);
+            this.debug_text.Size = new System.Drawing.Size(390, 359);
             this.debug_text.TabIndex = 12;
             // 
             // scrapeButton
@@ -168,12 +170,31 @@
             this.scrapeButton.UseVisualStyleBackColor = false;
             this.scrapeButton.Click += new System.EventHandler(this.ScrapeButton_Click);
             // 
+            // url_text
+            // 
+            this.url_text.Location = new System.Drawing.Point(52, 286);
+            this.url_text.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.url_text.Name = "url_text";
+            this.url_text.Size = new System.Drawing.Size(422, 26);
+            this.url_text.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(48, 262);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 20);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "URL";
+            // 
             // TLC_form
             // 
             this.AcceptButton = this.X_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1009, 941);
+            this.ClientSize = new System.Drawing.Size(1017, 1048);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.url_text);
             this.Controls.Add(this.scrapeButton);
             this.Controls.Add(this.debug_text);
             this.Controls.Add(this.Output);
@@ -205,10 +226,12 @@
         private System.Windows.Forms.Button Enter_button;
         private System.Windows.Forms.Button shifts_button;
         private System.Windows.Forms.Button X_button;
-        private System.Windows.Forms.TextBox Output;
-        private System.Windows.Forms.TextBox debug_text;
         private System.Windows.Forms.Button scrapeButton;
         public System.Windows.Forms.WebBrowser webbMain;
+        public System.Windows.Forms.TextBox url_text;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox Output;
+        public System.Windows.Forms.TextBox debug_text;
     }
 }
 

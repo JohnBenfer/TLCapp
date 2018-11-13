@@ -25,11 +25,57 @@ namespace TLCapp
         }
         
         
-        public void Scrape(string url)
+        public async Task Scrape(string url)
         {
+
             f.webbMain.Navigate(url);
-            
-            
+
+
+            int c = 0;
+            while (f.webbMain.IsBusy == false)
+            {
+                Application.DoEvents();
+                f.debug_text.AppendText("waiting " + c++.ToString() + "\n");
+            }
+
+            while (f.webbMain.IsBusy == true)
+            {
+                Application.DoEvents();
+                if (c % 4 == 0)
+                {
+                    Console.WriteLine(c--);
+                }
+                else
+                {
+                    c--;
+                }
+
+            }
+            f.debug_text.AppendText("delay...\n");
+            await Task.Delay(100);
+
+            Dictionary<int, string> itemLine = new Dictionary<int, string>();
+
+            var elements = f.webbMain.Document.All;
+            Console.WriteLine("Count = " + elements.Count);
+            foreach (HtmlElement i in elements)
+            {
+                if (i.GetAttribute("className") == "sku-value")
+                {
+                    Console.WriteLine(i.InnerText);
+                }
+                if (i.GetAttribute("className") == "sku-title" && !(i.InnerText.Equals("Model:")) && !(i.InnerText.Equals("SKU:")))
+                {
+
+                    Console.WriteLine(i.InnerText + "\n");
+                }
+
+            }
+
+
+
+
+
         }
 
 
