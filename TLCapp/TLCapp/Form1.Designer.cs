@@ -124,7 +124,7 @@
             // 
             // X_button
             // 
-            this.X_button.BackColor = System.Drawing.Color.Red;
+            this.X_button.BackColor = System.Drawing.Color.RoyalBlue;
             this.X_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.X_button.Location = new System.Drawing.Point(482, 41);
             this.X_button.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -143,6 +143,7 @@
             this.Output.Multiline = true;
             this.Output.Name = "Output";
             this.Output.ReadOnly = true;
+            this.Output.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.Output.Size = new System.Drawing.Size(1017, 239);
             this.Output.TabIndex = 11;
             // 
@@ -160,14 +161,15 @@
             // 
             // scrapeButton
             // 
-            this.scrapeButton.BackColor = System.Drawing.Color.Lime;
+            this.scrapeButton.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.scrapeButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.scrapeButton.Location = new System.Drawing.Point(370, 172);
             this.scrapeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.scrapeButton.Name = "scrapeButton";
             this.scrapeButton.Size = new System.Drawing.Size(105, 71);
             this.scrapeButton.TabIndex = 13;
             this.scrapeButton.Text = "Scrape";
-            this.scrapeButton.UseVisualStyleBackColor = false;
+            this.scrapeButton.UseVisualStyleBackColor = true;
             this.scrapeButton.Click += new System.EventHandler(this.ScrapeButton_Click);
             // 
             // url_text

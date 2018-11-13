@@ -28,6 +28,7 @@ namespace TLCapp
         {
             InitializeComponent();
             scraper = new Scraper(this);
+            
         }
 
 
