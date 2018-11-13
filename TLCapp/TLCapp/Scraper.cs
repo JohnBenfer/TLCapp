@@ -15,7 +15,7 @@ namespace TLCapp
     {
 
         private System.Windows.Forms.WebBrowser webMain;
-        private Form f;
+        private TLC_form f;
 
 
         public Scraper(TLC_form f)
@@ -27,7 +27,7 @@ namespace TLCapp
         
         public void Scrape(string url)
         {
-            
+            f.webbMain.Navigate(url);
             
             
         }

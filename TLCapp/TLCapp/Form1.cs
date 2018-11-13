@@ -30,13 +30,7 @@ namespace TLCapp
             Scraper scraper = new Scraper(this);
 
         }
-        public WebBrowser browse
-        {
-            get
-            {
-                return webbMain;
-            }
-        }
+
 
 
 
