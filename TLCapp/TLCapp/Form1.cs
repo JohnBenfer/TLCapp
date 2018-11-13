@@ -27,16 +27,27 @@ namespace TLCapp
         public TLC_form()
         {
             InitializeComponent();
+            Scraper scraper = new Scraper(this);
+
+        }
+        public WebBrowser browse
+        {
+            get
+            {
+                return webbMain;
+            }
         }
 
-        
+
+
         string URL = "https://mytlc.bestbuy.com/";
         string TLC = "https://mytlc.bestbuy.com/etm/login.jsp";
         string Twitter = "https://twitter.com/login";
         string username;
         string password;
         string a = "a1280608";
-        string p = "Jb321321";
+        string p = "Jb654654";
+
 
 
         /// <summary>
